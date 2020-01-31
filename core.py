@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+from sklearn.preprocessing import StandardScaler
+
+scale = StandardScaler()
+
+df = pd.read_excel("divorce.xlsx")
+k = df.drop(['Class'], 1)
+print(k)
+for col in df.columns:
+    print(col)
+# x = df[['Atr1', 'Atr2']]
+x = k;
+y = df['Class']
+
+# print(x)
+# print(y)
+# print(type(df))
+
+file1 = open('dis.txt', 'r')
+Lines = file1.readlines()
+model = linear_model.LinearRegression()
+model.fit(x, y)
+# print(model.coef_)
+ans = []
+for line in Lines:
+    print(line)
+    n = int(input("enter on a scale 0 to 4    "))
+    if n>4:
+        n = int(4)
+    if n<0:
+        n = int(0)
+    ans.append(n)
+print(ans)
+print(len(ans))
+print("probability")
+print(model.predict([ans]))
+# print(model.predict([[4, 4, 3, 2, 4, 0, 0, 4, 4, 2, 4, 3, 2, 3, 2, 4, 2, 2, 3, 4, 4, 3, 3, 3, 3, 4, 3, 3, 4, 4, 3, 0, 2,
+#                       1, 1, 1, 0, 0, 3, 0, 1, 0, 3, 0, 0, 0, 2, 2, 0, 0, 0, 2, 1, 2]]))
