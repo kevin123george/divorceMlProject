@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn import linear_model
 from sklearn.preprocessing import StandardScaler
-
+from keras.utils import plot_model
 scale = StandardScaler()
 
 df = pd.read_excel("divorce.xlsx")
@@ -21,8 +21,12 @@ y = df['Class']
 file1 = open('dis.txt', 'r')
 Lines = file1.readlines()
 model = linear_model.LinearRegression()
+model2 = linear_model.LogisticRegression()
 model.fit(x, y)
-# print(model.coef_)
+model2.fit(x, y)
+print(type(model2))
+# plot_model(model, to_file='model.png')
+print(model.coef_)
 ans = []
 for line in Lines:
     print(line)
@@ -36,5 +40,9 @@ print(ans)
 print(len(ans))
 print("probability")
 print(model.predict([ans]))
+print(model2.predict([ans]))
 # print(model.predict([[4, 4, 3, 2, 4, 0, 0, 4, 4, 2, 4, 3, 2, 3, 2, 4, 2, 2, 3, 4, 4, 3, 3, 3, 3, 4, 3, 3, 4, 4, 3, 0, 2,
 #                       1, 1, 1, 0, 0, 3, 0, 1, 0, 3, 0, 0, 0, 2, 2, 0, 0, 0, 2, 1, 2]]))
+
+
+print(k.corr(method="pearson")[:1])
